@@ -17,11 +17,12 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+
 export default async function Home() {
   const session = await getServerSession(authOptions);
 
   if (!session) {
-    redirect("/");
+    redirect("/api/auth/signin");
   }
 
   async function addPost(formData: FormData) {
@@ -61,6 +62,11 @@ export default async function Home() {
           </SelectContent>
         </Select>
         <Input name="title" placeholder="Title" id="title" required />
+
+        <Button type="button" variant="ghost">
+          Ghost
+        </Button>
+
         <Textarea required id="content" rows={10} name="content" />
         <Button type="submit">Submit</Button>
       </form>
